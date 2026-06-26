@@ -25,8 +25,9 @@ GoRouter appRouter({required AuthService authService}) => GoRouter(
           routes: [
             GoRoute(
               path: Routes.home,
-              builder: (context, state) =>
-                  const HomeMenu(viewModel: HomeViewModel()),
+              builder: (context, state) => HomeMenu(
+                viewModel: HomeViewModel(themeService: context.read()),
+              ),
             ),
           ],
         ),
@@ -34,8 +35,7 @@ GoRouter appRouter({required AuthService authService}) => GoRouter(
           routes: [
             GoRoute(
               path: Routes.profile,
-              builder: (context, state) =>
-                  const ProfileMenu(),
+              builder: (context, state) => const ProfileMenu(),
             ),
           ],
         ),
