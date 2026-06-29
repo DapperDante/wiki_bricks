@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wiki_bricks/core/services/models/theme.model.dart';
-import 'package:wiki_bricks/ui/components/ui.components.dart';
+import 'package:wiki_bricks/features/components/ui.components.dart';
 import 'home_view_model.dart';
 
 class HomeMenu extends StatefulWidget {

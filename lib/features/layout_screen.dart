@@ -16,6 +16,7 @@ class LayoutScreen extends StatelessWidget {
       ),
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Sets'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
       ],
     ),
@@ -23,6 +24,6 @@ class LayoutScreen extends StatelessWidget {
       onPressed: () {},
       child: const Icon(Icons.search),
     ),
-    floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
   );
 }
