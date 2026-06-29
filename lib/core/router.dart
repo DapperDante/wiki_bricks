@@ -1,6 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/minifigs/cubit/minifigs_cubit.dart';
+import '../features/minifigs/repositories/minifig.repository.dart';
+import '../features/minifigs/views/all_minifigs_view.dart';
 import '../features/home/cubit/home_cubit.dart';
 import '../features/themes/repositories/theme.repository.dart';
 import '../core/services/auth.service.dart';
@@ -48,6 +51,19 @@ GoRouter appRouter({required AuthService authService}) => GoRouter(
                   repository: SetRepository(service: context.read()),
                 )..getAllSets(),
                 child: const AllSetsView(),
+              ),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: Routes.minifigs,
+              builder: (context, state) => BlocProvider(
+                create: (_) => MinifigsCubit(
+                  repository: MinifigRepository(service: context.read()),
+                )..getAllMinifigs(),
+                child: const AllMinifigsView(),
               ),
             ),
           ],

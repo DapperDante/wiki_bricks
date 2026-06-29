@@ -9,6 +9,7 @@ class LayoutScreen extends StatelessWidget {
     appBar: AppBar(title: const Text('Layout Shell')),
     body: _navigationShell,
     bottomNavigationBar: BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
       currentIndex: _navigationShell.currentIndex,
       onTap: (index) => _navigationShell.goBranch(
         index,
@@ -17,6 +18,7 @@ class LayoutScreen extends StatelessWidget {
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Sets'),
+        BottomNavigationBarItem(icon: Icon(Icons.toys), label: 'Minifigs'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
       ],
     ),
