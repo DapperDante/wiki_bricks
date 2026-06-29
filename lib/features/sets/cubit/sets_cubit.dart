@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:wiki_bricks/features/sets/models/set.model.dart';
-import 'package:wiki_bricks/features/sets/repositories/set.repository.dart';
+import '../models/set.model.dart';
+import '../repositories/set.repository.dart';
 
 part 'sets_state.dart';
 

@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/home/cubit/home_cubit.dart';
+import '../features/themes/repositories/theme.repository.dart';
 import '../core/services/auth.service.dart';
 import '../features/layout_screen.dart';
 import '../features/profile/profile_menu.dart';
@@ -8,8 +10,7 @@ import '../features/sets/cubit/sets_cubit.dart';
 import '../features/sets/repositories/set.repository.dart';
 import '../features/sets/views/all_sets_view.dart';
 import '../core/routes.dart';
-import '../features/home/home_menu.dart';
-import '../features/home/home_view_model.dart';
+import '../features/home/views/home_view.dart';
 import '../features/auth/login_screen.dart';
 import '../features/auth/login_view_model.dart';
 
@@ -29,8 +30,11 @@ GoRouter appRouter({required AuthService authService}) => GoRouter(
           routes: [
             GoRoute(
               path: Routes.home,
-              builder: (context, state) => HomeMenu(
-                viewModel: HomeViewModel(themeService: context.read()),
+              builder: (context, state) => BlocProvider(
+                create: (_) => HomeCubit(
+                  repository: ThemeRepository(service: context.read()),
+                )..getAllThemes(),
+                child: const HomeView(),
               ),
             ),
           ],

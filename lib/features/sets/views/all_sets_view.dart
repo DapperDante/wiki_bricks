@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wiki_bricks/features/sets/cubit/sets_cubit.dart';
+
+import '../cubit/sets_cubit.dart';
 
 class AllSetsView extends StatelessWidget {
   const AllSetsView({super.key});
-
   @override
-  Widget build(BuildContext context) => 
-  BlocBuilder<SetsCubit, SetsState>(
+  Widget build(BuildContext context) => BlocBuilder<SetsCubit, SetsState>(
     builder: (context, state) {
       if (state is SetsLoaded) {
         return ListView.builder(

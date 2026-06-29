@@ -1,23 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:wiki_bricks/core/services/models/theme.model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wiki_bricks/features/components/ui.components.dart';
-import 'home_view_model.dart';
+import 'package:wiki_bricks/features/home/cubit/home_cubit.dart';
 
-class HomeMenu extends StatefulWidget {
-  const HomeMenu({super.key, required this.viewModel});
-  final HomeViewModel viewModel;
-  @override
-  State<HomeMenu> createState() => _HomeMenuState();
-}
-
-class _HomeMenuState extends State<HomeMenu> {
-  late Future<List<ThemeModel>> _themesFuture;
-  @override
-  initState() {
-    super.initState();
-    _themesFuture = widget.viewModel.getThemes();
-  }
-
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
   @override
   Widget build(BuildContext context) => Column(
     spacing: 15,
@@ -32,13 +19,12 @@ class _HomeMenuState extends State<HomeMenu> {
           ),
         ),
       ),
-      FutureBuilder(
-        future: _themesFuture,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
+      BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          if (state is HomeLoaded) {
             return CarouselCustom(
               height: 100,
-              list: snapshot.data!,
+              list: state.themes,
               builder: (context, i) => Container(
                 width: double.infinity,
                 alignment: Alignment.center,
@@ -47,16 +33,16 @@ class _HomeMenuState extends State<HomeMenu> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
-                  snapshot.data![i].name,
+                  state.themes[i].name,
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
             );
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else {
-            return CircularProgressIndicator();
           }
+          if (state is HomeError) {
+            return Text('Error: ${state.message}');
+          }
+          return CircularProgressIndicator();
         },
       ),
     ],
