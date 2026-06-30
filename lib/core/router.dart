@@ -35,8 +35,10 @@ GoRouter appRouter({required AuthService authService}) => GoRouter(
               path: Routes.home,
               builder: (context, state) => BlocProvider(
                 create: (_) => HomeCubit(
-                  repository: ThemeRepository(service: context.read()),
-                )..getAllThemes(),
+                  themeRepository: ThemeRepository(service: context.read()),
+                  minifigRepository: MinifigRepository(service: context.read()),
+                  setRepository: SetRepository(service: context.read()),
+                )..getAllData(),
                 child: const HomeView(),
               ),
             ),

@@ -1,5 +1,19 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
+class CardWidget extends StatelessWidget {
+  const CardWidget({super.key, required this._widget});
+  final Widget _widget;
+  @override
+  Widget build(BuildContext context) => Container(
+    width: double.infinity,
+    decoration: BoxDecoration(
+      color: Theme.of(context).colorScheme.primaryContainer,
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: _widget
+  );
+}
 
 class CarouselCustom<T> extends StatelessWidget {
   const CarouselCustom({

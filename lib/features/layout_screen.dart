@@ -23,8 +23,9 @@ class LayoutScreen extends StatelessWidget {
       ],
     ),
     floatingActionButton: FloatingActionButton(
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       onPressed: () {},
-      child: const Icon(Icons.search),
+      child: const Icon(Icons.search, color: Colors.white),
     ),
     // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
   );
